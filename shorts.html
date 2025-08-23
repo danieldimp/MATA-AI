@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Shorts — MATA AI</title>
+    <meta name="description" content="Cinematic AI shorts exploring the intersection of technology, emotion, and storytelling."/>
+    
+    <!-- ISSUE-006 FIX: Optimized font loading strategy -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --bg: #0A0A0A;
+            --text: #FFFFFF;
+            --mute: #888888;
+            --border: #1A1A1A;
+            --accent: rgba(255, 255, 255, 0.04);
+            
+            /* Grid System */
+            --grid-unit: 8px;
+            --container-width: 1200px;
+            --content-max-width: 800px;
+            --video-max-width: 960px;
+            --section-padding: calc(var(--grid-unit) * 10); /* 80px */
+            --element-gap: calc(var(--grid-unit) * 3); /* 24px */
+            --text-gap: calc(var(--grid-unit) * 2); /* 16px */
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        /* ISSUE-003 FIX: Header consistency with index.html */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px; /* FIXED: Consistent padding */
+            height: 80px; /* ISSUE-003 FIX: Fixed height */
+            min-height: 80px;
+            max-height: 80px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 10, 0.85); /* IMPROVED: More opaque */
+            backdrop-filter: blur(20px) saturate(1.4); /* ENHANCED */
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            overflow: hidden;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            contain: layout paint;
+        }
+
+        .site-header .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .site-header .brand img {
+            display: block;
+            vertical-align: middle;
+            margin: 0;
+            height: 32px; /* ISSUE-003 FIX: Consistent logo size */
+            width: auto;
+        }
+
+        /* Remover efecto de animación que causa la línea blanca */
+        .site-header::after {
+            display: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav a {
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+            font-family: Inter, system-ui, sans-serif;
+            padding: 0;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            opacity: 1;
+        }
+
+        /* Solo Shorts en Space Grotesk - CORREGIDO */
+        .nav a[href*="shorts"],
+        .nav a.active {
+            font-family: 'Space Grotesk', sans-serif !important;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+        }
+
+        .nav a.cta {
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            transition: all 0.2s ease;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        .nav a.cta:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Remove underline for active state */
+        .nav a.active::after {
+            display: none;
+        }
+
+        /* ===== MOBILE MENU STYLES ===== */
+        /* Botón hamburguesa (solo mobile) */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            position: relative;
+            z-index: 1002;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 3px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        /* Animación hamburguesa → X */
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Overlay oscuro */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Menú mobile centrado */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.8);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .mobile-menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .mobile-menu-item {
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active .mobile-menu-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animación escalonada */
+        .mobile-menu.active .mobile-menu-item:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(5) { transition-delay: 0.5s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(6) { transition-delay: 0.6s; }
+
+        .mobile-menu-item a {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 15px 30px;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .mobile-menu-item a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .mobile-menu-item a.cta {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 24px;
+            padding: 18px 36px;
+            border-radius: 50px;
+        }
+
+        .mobile-menu-item a.cta:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Main Shorts Container */
+        .shorts-main {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .shorts-main:active {
+            cursor: grabbing;
+        }
+
+        /* Shorts Track - CORREGIDO PARA CENTRADO PERFECTO */
+        .shorts-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform;
+            /* CRUCIAL: Asegurar que no haya flex-shrink ni flex-grow */
+            flex-wrap: nowrap;
+        }
+
+        /* Individual Short Container - CENTRADO VERTICAL Y HORIZONTAL PERFECTO */
+        .short-slide {
+            flex: 0 0 100vw;
+            height: 100vh; /* CRUCIAL: Altura exacta del viewport */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 80px;
+            /* CRUCIAL: Forzar que cada slide ocupe exactamente 100vw */
+            min-width: 100vw;
+            max-width: 100vw;
+            /* CRUCIAL: Posición vertical fija */
+            box-sizing: border-box;
+        }
+
+        .short-slide > div {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            margin: 0 auto;
+            /* CRUCIAL: Centrado absoluto */
+            position: relative;
+            left: 0;
+            transform: translateX(0);
+            /* CRUCIAL: Posición vertical fija */
+            top: 0;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            aspect-ratio: 21/9;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid var(--border);
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.15),
+                0 1px 4px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 36px auto;
+            transition: all 0.4s ease;
+            /* CRUCIAL: Posición vertical fija para todos los videos */
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        .video-container:hover {
+            box-shadow: 
+                0 8px 40px rgba(0, 0, 0, 0.25),
+                0 2px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .short-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        /* iOS-style Video Controls - Mejorado para hover y mobile */
+        .video-controls {
+            position: absolute;
+            bottom: calc(var(--grid-unit) * 2);
+            left: calc(var(--grid-unit) * 2);
+            right: calc(var(--grid-unit) * 2);
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid-unit) * 1.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: none;
+            border: none;
+            padding: 0;
+            pointer-events: auto;
+        }
+
+        /* Mostrar controles en hover (desktop) */
+        .video-container:hover .video-controls {
+            opacity: 1;
+        }
+
+        /* Para mobile, mostrar controles solo cuando se toca el video */
+        @media (hover: none) and (pointer: coarse) {
+            .video-controls {
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+            
+            .video-container.show-controls .video-controls {
+                opacity: 1;
+            }
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            padding: calc(var(--grid-unit) / 2);
+            transition: all 0.2s ease;
+            font-family: system-ui;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(var(--grid-unit) * 4);
+            height: calc(var(--grid-unit) * 4);
+            flex-shrink: 0;
+            border-radius: calc(var(--grid-unit) / 2);
+            backdrop-filter: blur(8px);
+        }
+
+        .control-btn:hover {
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .control-btn svg {
+            width: calc(var(--grid-unit) * 2.5);
+            height: calc(var(--grid-unit) * 2.5);
+            fill: currentColor;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            flex: 1;
+            height: calc(var(--grid-unit) / 2.67);
+            background: rgba(255, 255, 255, 0.2);
+            position: relative;
+            cursor: pointer;
+            min-width: 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .progress-container:hover {
+            height: calc(var(--grid-unit) / 2);
+        }
+
+        .progress-container:hover .progress-bar {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Video Info - POSICIÓN FIJA */
+        .video-info {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            /* CRUCIAL: Altura y posición fijas para evitar desplazamiento */
+            flex-shrink: 0;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .video-title {
+            font-size: calc(var(--grid-unit) * 4);
+            font-weight: 600;
+            margin: 0 0 var(--grid-unit) 0;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: rgba(255, 255, 255, 0.95);
+            font-family: 'Space Grotesk', sans-serif;
+            /* CRUCIAL: Altura fija para evitar desplazamiento */
+            min-height: calc(var(--grid-unit) * 4.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-subtitle {
+            font-size: calc(var(--grid-unit) * 2);
+            color: var(--mute);
+            margin: 0 0 var(--text-gap) 0;
+            font-weight: 500;
+            letter-spacing: -0.005em;
+            font-family: 'Space Grotesk', sans-serif;
+            /* CRUCIAL: Altura fija */
+            min-height: calc(var(--grid-unit) * 2.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-description {
+            font-size: calc(var(--grid-unit) * 1.875);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.55;
+            margin: 0 auto;
+            max-width: calc(var(--grid-unit) * 60);
+            font-weight: 400;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.01em;
+            /* CRUCIAL: Altura mínima fija para 3 líneas de texto */
+            min-height: calc(var(--grid-unit) * 1.875 * 1.55 * 3);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Subtle Edge Indicators */
+        .edge-indicator {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: calc(var(--grid-unit) * 8);
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 20%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.1) 80%,
+                transparent 100%);
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .edge-indicator.left {
+            left: calc(var(--grid-unit) * 4);
+        }
+
+        .edge-indicator.right {
+            right: calc(var(--grid-unit) * 4);
+        }
+
+        .shorts-main:hover .edge-indicator {
+            opacity: 1;
+        }
+
+        /* Video Counter - Oculto de nuevo */
+        .video-counter {
+            display: none;
+        }
+
+        /* Back to Portfolio - Hidden since we have proper nav */
+        .back-to-portfolio {
+            display: none;
+        }
+
+        .back-btn {
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(16px) saturate(1.5);
+            letter-spacing: -0.005em;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-0.5px);
+        }
+
+        /* Current Indicator */
+        .current-indicator {
+            position: fixed;
+            top: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+            z-index: 1500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Progress Indicator - CORREGIDO */
+        .progress-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 2001;
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: calc(var(--grid-unit) * 6); /* 48px */
+                --video-max-width: 100%;
+                --content-max-width: 100%;
+            }
+
+            /* MOSTRAR HAMBURGUESA Y OCULTAR NAV EN MOBILE */
+            .nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .site-header {
+                padding: 0 20px; /* ISSUE-003 FIX: Consistent padding */
+                height: 80px; /* ISSUE-003 FIX: Consistent height */
+                min-height: 80px;
+                max-height: 80px;
+            }
+
+            .nav a {
+                font-size: 15px;
+                padding: 0;
+                font-family: Inter, system-ui, sans-serif;
+            }
+            
+            /* Solo Shorts en Space Grotesk también en mobile - CORREGIDO */
+            .nav a[href*="shorts"],
+            .nav a.active {
+                font-family: 'Space Grotesk', sans-serif !important;
+                font-weight: 600 !important;
+                letter-spacing: -0.005em !important;
+            }
+
+            .short-slide {
+                padding: 0 48px;
+            }
+
+            .short-slide > div {
+                max-width: 100%;
+            }
+
+            .video-container {
+                margin-bottom: calc(var(--grid-unit) * 3);
+                border-radius: calc(var(--grid-unit) * 0.75);
+                align-self: center;
+            }
+
+            .video-info {
+                max-width: 100%;
+            }
+
+            .video-description {
+                margin: 0 auto;
+                max-width: calc(var(--grid-unit) * 50);
+            }
+
+            .video-title {
+                font-size: calc(var(--grid-unit) * 3);
+            }
+
+            .video-subtitle {
+                font-size: calc(var(--grid-unit) * 1.75);
+            }
+
+            .video-description {
+                font-size: calc(var(--grid-unit) * 1.75);
+                line-height: 1.5;
+            }
+
+            .back-btn {
+                padding: calc(var(--grid-unit)) calc(var(--grid-unit) * 1.75);
+                font-size: calc(var(--grid-unit) * 1.5);
+            }
+
+            .current-indicator {
+                top: calc(var(--grid-unit) * 3);
+                font-size: calc(var(--grid-unit) * 1.375);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                gap: 20px;
+            }
+            
+            .nav a {
+                font-size: 15px;
+                padding: 0;
+            }
+            
+            .video-container {
+                margin: 0 -6vw 20px -6vw;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+
+            .short-slide {
+                padding: 0 24px;
+            }
+
+            .video-title {
+                font-size: 20px;
+            }
+
+            .video-description {
+                font-size: 13px;
+            }
+        }
+
+        /* Hide scrollbars */
+        .shorts-main::-webkit-scrollbar {
+            display: none;
+        }
+
+        .shorts-main {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Line - Movida debajo del header -->
+    <div class="progress-line" id="progressLine"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <img alt="MATA AI" height="28" src="assets/logo.svg"/>
+        </a>
+        <nav class="nav">
+            <a href="index.html#work">Work</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#approach">Approach</a>
+            <a href="index.html#about">About</a>
+            <a href="why-us.html">Why Us</a>
+            <a href="shorts.html" class="active">Shorts</a>
+            <a href="index.html#contact" class="cta">Start a project</a>
+        </nav>
+
+        <!-- NUEVO: Botón hamburguesa (solo mobile) -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- NUEVO: Overlay oscuro -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- NUEVO: Menú mobile centrado -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <a href="index.html#work">Work</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="index.html#services">Services</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="index.html#approach">Approach</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="index.html#about">About</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="why-us.html">Why Us</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="shorts.html">Shorts</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="index.html#contact" class="cta">Start a project</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Current Indicator -->
+    <div class="current-indicator" id="currentIndicator">01 / 04</div>
+
+    <!-- Back to Portfolio - Hidden -->
+    <div class="back-to-portfolio" style="display: none;">
+        <a href="index.html#work" class="back-btn">← Portfolio</a>
+    </div>
+
+    <!-- Edge Indicators -->
+    <div class="edge-indicator left"></div>
+    <div class="edge-indicator right"></div>
+
+    <!-- Main Shorts Container -->
+    <main class="shorts-main" id="shortsMain">
+        <div class="shorts-track" id="shortsTrack">
+            <!-- SOF-IA -->
+            <div class="short-slide">
+                <div>
+                    <div class="video-container">
+                        <video class="short-video" muted loop>
+                            <source src="assets/shorts/sofia.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls">
+                            <button class="control-btn play-pause-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                </svg>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <button class="control-btn mute-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="video-counter">01/04</div>
+                    </div>
+                    <div class="video-info">
+                        <h1 class="video-title">SOF-IA</h1>
+                        <p class="video-subtitle">Electronic Pulse</p>
+                        <p class="video-description">A young DJ's bedroom practice transforms into an electrifying club night where music becomes pure energy, connecting souls through rhythm.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- F61 -->
+            <div class="short-slide">
+                <div>
+                    <div class="video-container">
+                        <video class="short-video" muted loop>
+                            <source src="assets/shorts/f61.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls">
+                            <button class="control-btn play-pause-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <button class="control-btn mute-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="video-counter">02/04</div>
+                    </div>
+                    <div class="video-info">
+                        <h1 class="video-title">F61</h1>
+                        <p class="video-subtitle">Final Lap</p>
+                        <p class="video-description">A Formula 1 legend's 61st birthday coincides with his final race—an intimate love letter between driver, machine, and track that shaped him.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- From Prompt to Flight -->
+            <div class="short-slide">
+                <div>
+                    <div class="video-container">
+                        <video class="short-video" muted loop>
+                            <source src="assets/shorts/prompt-to-flight.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls">
+                            <button class="control-btn play-pause-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <button class="control-btn mute-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="video-counter">03/04</div>
+                    </div>
+                    <div class="video-info">
+                        <h1 class="video-title">From Prompt to Flight</h1>
+                        <p class="video-subtitle">MATA AI Generative Studio</p>
+                        <p class="video-description">Witness the transformation of a simple text prompt into soaring cinematic visuals—the creative journey from concept to execution.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- From Prompt to... -->
+            <div class="short-slide">
+                <div>
+                    <div class="video-container">
+                        <video class="short-video" muted loop>
+                            <source src="assets/shorts/prompt-to-beyond.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls">
+                            <button class="control-btn play-pause-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <button class="control-btn mute-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="video-counter">04/04</div>
+                    </div>
+                    <div class="video-info">
+                        <h1 class="video-title">From Prompt to...</h1>
+                        <p class="video-subtitle">MATA AI Generative Studio</p>
+                        <p class="video-description">The infinite possibilities of generative AI storytelling—where imagination meets technology to create the impossible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ===== MOBILE MENU FUNCTIONALITY =====
+        class MobileMenu {
+            constructor() {
+                this.toggle = document.getElementById('mobileMenuToggle');
+                this.overlay = document.getElementById('mobileMenuOverlay');
+                this.menu = document.getElementById('mobileMenu');
+                this.menuLinks = this.menu ? this.menu.querySelectorAll('a') : [];
+                this.isOpen = false;
+                
+                if (this.toggle && this.overlay && this.menu) {
+                    this.init();
+                }
+            }
+
+            init() {
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                // Toggle button
+                this.toggle.addEventListener('click', () => {
+                    this.toggleMenu();
+                });
+
+                // Overlay click to close
+                this.overlay.addEventListener('click', () => {
+                    this.closeMenu();
+                });
+
+                // Menu links click to close
+                this.menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        this.closeMenu();
+                    });
+                });
+
+                // Escape key to close
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isOpen) {
+                        this.closeMenu();
+                    }
+                });
+
+                // Prevent scroll when menu is open
+                this.menu.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                }, { passive: false });
+            }
+
+            toggleMenu() {
+                if (this.isOpen) {
+                    this.closeMenu();
+                } else {
+                    this.openMenu();
+                }
+            }
+
+            openMenu() {
+                this.isOpen = true;
+                this.toggle.classList.add('active');
+                this.overlay.classList.add('active');
+                this.menu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            closeMenu() {
+                this.isOpen = false;
+                this.toggle.classList.remove('active');
+                this.overlay.classList.remove('active');
+                this.menu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        class RefinedShortsViewer {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 4;
+                this.track = document.getElementById('shortsTrack');
+                this.container = document.getElementById('shortsMain');
+                this.videos = document.querySelectorAll('.short-video');
+                this.progressLine = document.getElementById('progressLine');
+                this.currentIndicator = document.getElementById('currentIndicator');
+                
+                this.isDragging = false;
+                this.startX = 0;
+                this.currentX = 0;
+                this.dragThreshold = 80;
+                
+                // Para controles en mobile
+                this.controlsTimeout = null;
+                
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.playCurrentVideo();
+                this.updateProgress();
+                this.updateVideoCounter();
+                this.ensureCentering();
+            }
+
+            ensureCentering() {
+                // Función simple - solo ejecutar una vez al inicio
+                console.log('Centrado aplicado');
+            }
+
+            bindEvents() {
+                // Mouse/Touch drag events
+                this.container.addEventListener('mousedown', this.startDrag.bind(this));
+                this.container.addEventListener('touchstart', this.startDrag.bind(this), { passive: false });
+                
+                document.addEventListener('mousemove', this.drag.bind(this));
+                document.addEventListener('touchmove', this.drag.bind(this), { passive: false });
+                
+                document.addEventListener('mouseup', this.endDrag.bind(this));
+                document.addEventListener('touchend', this.endDrag.bind(this));
+
+                // Arrow navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                    if (e.key === ' ') {
+                        e.preventDefault();
+                        this.toggleCurrentVideo();
+                    }
+                });
+
+                // Video controls
+                this.videos.forEach((video, index) => {
+                    const videoContainer = video.closest('.video-container');
+                    const playBtn = video.parentElement.querySelector('.play-pause-btn');
+                    const muteBtn = video.parentElement.querySelector('.mute-btn');
+                    const progressContainer = video.parentElement.querySelector('.progress-container');
+                    const progressBar = video.parentElement.querySelector('.progress-bar');
+                    
+                    // Mobile controls - mostrar al tocar video
+                    if ('ontouchstart' in window) {
+                        video.addEventListener('touchstart', (e) => {
+                            e.stopPropagation();
+                            this.showControlsTemporarily(videoContainer);
+                        });
+                    }
+                    
+                    // Play/Pause
+                    video.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.toggleVideo(video, playBtn);
+                    });
+                    
+                    playBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.toggleVideo(video, playBtn);
+                    });
+
+                    // Mute/Unmute
+                    muteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.toggleMute(video, muteBtn);
+                    });
+
+                    // Progress bar
+                    video.addEventListener('timeupdate', () => {
+                        const progress = (video.currentTime / video.duration) * 100;
+                        progressBar.style.width = `${progress}%`;
+                    });
+
+                    progressContainer.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const rect = progressContainer.getBoundingClientRect();
+                        const pos = (e.clientX - rect.left) / rect.width;
+                        video.currentTime = pos * video.duration;
+                    });
+                });
+
+                // Auto-advance on video end con sonido
+                this.videos.forEach(video => {
+                    video.addEventListener('ended', () => {
+                        setTimeout(() => {
+                            if (this.currentSlide < this.totalSlides - 1) {
+                                this.nextSlide();
+                            } else {
+                                // Loop back to first video
+                                this.goToSlide(0);
+                            }
+                        }, 500);
+                    });
+                });
+            }
+
+            showControlsTemporarily(container) {
+                container.classList.add('show-controls');
+                
+                // Limpiar timeout anterior
+                if (this.controlsTimeout) {
+                    clearTimeout(this.controlsTimeout);
+                }
+                
+                // Ocultar después de 3 segundos
+                this.controlsTimeout = setTimeout(() => {
+                    container.classList.remove('show-controls');
+                }, 3000);
+            }
+
+            startDrag(e) {
+                this.isDragging = true;
+                this.startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                this.container.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+
+            drag(e) {
+                if (!this.isDragging) return;
+                
+                this.currentX = (e.type.includes('mouse') ? e.clientX : e.touches[0].clientX) - this.startX;
+                
+                // CORREGIDO: Usar vw para consistency
+                const resistance = 0.2;
+                const offsetVw = (this.currentX * resistance) / window.innerWidth * 100;
+                const currentSlideVw = -(this.currentSlide * 100);
+                
+                this.track.style.transform = `translateX(${currentSlideVw + offsetVw}vw)`;
+            }
+
+            endDrag() {
+                if (!this.isDragging) return;
+                
+                this.isDragging = false;
+                this.container.style.cursor = 'grab';
+                
+                // Determine direction and threshold
+                if (Math.abs(this.currentX) > this.dragThreshold) {
+                    if (this.currentX > 0 && this.currentSlide > 0) {
+                        this.prevSlide();
+                    } else if (this.currentX < 0 && this.currentSlide < this.totalSlides - 1) {
+                        this.nextSlide();
+                    } else {
+                        this.goToSlide(this.currentSlide);
+                    }
+                } else {
+                    this.goToSlide(this.currentSlide);
+                }
+                
+                this.currentX = 0;
+            }
+
+            goToSlide(index) {
+                this.currentSlide = Math.max(0, Math.min(index, this.totalSlides - 1));
+                
+                // CORREGIDO: Usar translateX con valores exactos de viewport
+                const translateValue = -(this.currentSlide * 100);
+                this.track.style.transform = `translateX(${translateValue}vw)`;
+                
+                this.playCurrentVideo();
+                this.updateProgress();
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.totalSlides - 1) {
+                    this.goToSlide(this.currentSlide + 1);
+                } else {
+                    // Loop back to beginning
+                    this.goToSlide(0);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.goToSlide(this.currentSlide - 1);
+                } else {
+                    // Loop back to last video
+                    this.goToSlide(this.totalSlides - 1);
+                }
+            }
+
+            updateProgress() {
+                const progress = ((this.currentSlide + 1) / this.totalSlides) * 100;
+                this.progressLine.style.width = `${progress}%`;
+                
+                const current = String(this.currentSlide + 1).padStart(2, '0');
+                const total = String(this.totalSlides).padStart(2, '0');
+                this.currentIndicator.textContent = `${current} / ${total}`;
+            }
+
+            updateVideoCounter() {
+                const counters = document.querySelectorAll('.video-counter');
+                counters.forEach((counter, index) => {
+                    const current = String(index + 1).padStart(2, '0');
+                    const total = String(this.totalSlides).padStart(2, '0');
+                    counter.textContent = `${current}/${total}`;
+                });
+            }
+
+            playCurrentVideo() {
+                // Pause all videos and mute them
+                this.videos.forEach((video, index) => {
+                    if (index !== this.currentSlide) {
+                        video.pause();
+                        video.muted = true; // Asegurar que estén mudos
+                        const playBtn = video.parentElement.querySelector('.play-pause-btn');
+                        playBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+                    }
+                });
+
+                // Play current video with sound
+                const currentVideo = this.videos[this.currentSlide];
+                if (currentVideo) {
+                    currentVideo.muted = false; // Habilitar sonido para el video actual
+                    currentVideo.volume = 0.7; // Volumen moderado
+                    currentVideo.play();
+                    const playBtn = currentVideo.parentElement.querySelector('.play-pause-btn');
+                    playBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+                    
+                    // Actualizar estado del botón de mute
+                    const muteBtn = currentVideo.parentElement.querySelector('.mute-btn');
+                    muteBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+                }
+            }
+
+            toggleCurrentVideo() {
+                const currentVideo = this.videos[this.currentSlide];
+                const playBtn = currentVideo.parentElement.querySelector('.play-pause-btn');
+                this.toggleVideo(currentVideo, playBtn);
+            }
+
+            toggleVideo(video, playBtn) {
+                if (video.paused) {
+                    video.play();
+                    playBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+                } else {
+                    video.pause();
+                    playBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+                }
+            }
+
+            toggleMute(video, muteBtn) {
+                video.muted = !video.muted;
+                if (video.muted) {
+                    muteBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
+                } else {
+                    muteBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+                }
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new RefinedShortsViewer();
+            new MobileMenu(); // NUEVO: Inicializar menú mobile
+        });
+        
+        // Handle smooth scroll to sections when coming from other pages
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

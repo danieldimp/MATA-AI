@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60">
+  <rect width="240" height="60" rx="10" fill="none"/>
+  <text x="10" y="42" font-family="Inter,Segoe UI,Arial" font-size="36" font-weight="800" fill="#ffffff">MATA</text>
+  <text x="130" y="42" font-family="Inter,Segoe UI,Arial" font-size="36" font-weight="300" fill="#ffffff">AI</text>
+</svg>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+    <!-- Favicon - Primary -->
+    <link rel="shortcut icon" href="assets/favicon.svg" type="image/svg+xml"/>
+    <link rel="shortcut icon" href="assets/favicon-32.png" type="image/png"/>
+    
+    <title>MATA AI — Cinematic AI Storytelling for Visionary Brands</title>
+    <meta name="description" content="MATA AI is a generative production studio crafting cinematic AI storytelling for visionary brands. High-end visuals, fast turnarounds, zero compromise on craft."/>
+    
+    <!-- Enhanced Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="MATA AI — Cinematic AI Storytelling for Visionary Brands"/>
+    <meta property="og:description" content="MATA AI is a generative production studio crafting cinematic AI storytelling for visionary brands. High-end visuals, fast turnarounds, zero compromise on craft."/>
+    <meta property="og:image" content="https://mataai.studio/assets/mata-ai-logo-og.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="MATA AI Logo"/>
+    <meta property="og:url" content="https://mataai.studio"/>
+    <meta property="og:site_name" content="MATA AI"/>
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="MATA AI — Cinematic AI Storytelling for Visionary Brands"/>
+    <meta name="twitter:description" content="MATA AI is a generative production studio crafting cinematic AI storytelling for visionary brands. High-end visuals, fast turnarounds, zero compromise on craft."/>
+    <meta name="twitter:image" content="https://mataai.studio/assets/mata-ai-logo-og.png"/>
+    
+    <!-- Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MATA AI",
+      "description": "Generative production studio crafting cinematic AI storytelling for visionary brands. High-end visuals, fast turnarounds, zero compromise on craft.",
+      "url": "https://mataai.studio",
+      "logo": "https://mataai.studio/assets/mata-ai-logo-og.png",
+      "image": "https://mataai.studio/assets/mata-ai-logo-og.png",
+      "foundingDate": "2023",
+      "founder": {
+        "@type": "Person",
+        "name": "Daniel Mata",
+        "jobTitle": "Creative Director"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cuautitlán Izcalli",
+        "addressRegion": "México",
+        "addressCountry": "MX"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/mata-ai/",
+        "https://www.instagram.com/mataai.studio"
+      ]
+    }
+    </script>
+    
+    <!-- Favicons - Optimized for all browsers -->
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+    <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32"/>
+    <link rel="icon" href="assets/favicon.png" type="image/png"/>
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180"/>
+    <meta name="theme-color" content="#0A0A0A"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+      /* ISSUE-006 FIX: Font-display fallback for better performance */
+      @font-face {
+        font-family: 'Inter-fallback';
+        font-display: swap;
+        src: local('Inter'), local('Arial'), local('Helvetica');
+      }
+      @font-face {
+        font-family: 'Space-Grotesk-fallback';
+        font-display: swap;
+        src: local('Space Grotesk'), local('Inter'), local('Arial');
+      }
+    </style>
+
+    <!-- Styles -->
+    <link href="styles.css" rel="stylesheet"/>
+    <meta name="theme-color" content="#0A0A0A"/>
+    <link href="assets/favicon-32.png" rel="icon" sizes="32x32"/>
+    <link href="assets/favicon.png" rel="icon" sizes="192x192"/>
+    <link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/>
+    
+    <!-- Analytics -->
+    <script data-domain="mataai.com" defer src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+    <!-- Skip Links for Accessibility -->
+    <a href="#main-navigation" class="skip-link">Skip to navigation</a>
+    <a href="#hero-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <img alt="MATA AI" height="28" src="assets/logo.svg"/>
+        </a>
+        <nav class="nav" id="main-navigation" aria-label="Main navigation">
+            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#approach">Approach</a>
+            <a href="#about">About</a>
+            <a href="why-us.html">Why Us</a>
+            <a href="shorts.html">Shorts</a>
+            <a class="cta" href="#contact">Start a project</a>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <a href="#work">Work</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#services">Services</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#approach">Approach</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#about">About</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="why-us.html">Why Us</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="shorts.html">Shorts</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#contact" class="cta">Start a project</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main id="main-content" style="scroll-margin-top: 0;">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-heading" id="hero-content">
+            <div class="hero-video-wrap">
+                <video autoplay loop muted playsinline poster="assets/placeholder-1.webp" preload="auto" class="hero-video" aria-label="MATA AI hero showcase reel">
+                    <source src="assets/videos/hero.mp4" type="video/mp4"/>
+                    <p>Your browser doesn't support video. <a href="assets/videos/hero.mp4">Download the video</a>.</p>
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-copy">
+                <h1 id="hero-heading">
+                    <span class="line dim">Cinematic AI</span>
+                    <span class="line dim">Storytelling</span>
+                    <span class="line strong">for Visionary Brands</span>
+                </h1>
+                <p><span id="typewriter-text"></span><span class="typewriter-cursor">|</span></p>
+                <div class="cta-row">
+                    <a class="btn-liquid btn-pill" href="#work">Explore Our Work</a>
+                    <a class="button ghost btn-pill" href="#contact">Get a quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Section -->
+        <section class="section clients" id="clients" aria-labelledby="clients-heading">
+            <div class="section-head">
+                <h2 id="clients-heading">Portfolio Showcases</h2>
+                <p class="kicker">Brands featured in portfolio.</p>
+            </div>
+            <div aria-label="Client logos showcase" class="logo-marquee reveal">
+                <div class="marquee-track" id="marqueeTrack">
+                    <!-- Logos will be generated via JavaScript -->
+                </div>
+            </div>
+            <p class="fine trusted-by-disclaimer">Logos shown for portfolio identification only. All trademarks are property of their respective owners.</p>
+        </section>
+
+        <!-- Work Section -->
+        <section class="work section" id="work" aria-labelledby="work-heading">
+            <div class="section-head">
+                <h2 id="work-heading">Portfolio Visuals</h2>
+                <p class="kicker">Some works are adaptations for portfolio use only; not official brand materials.</p>
+            </div>
+            <div class="grid grid-cases" role="region" aria-label="Portfolio showcase gallery">
+                <!-- Sports Campaign -->
+                <article class="card case reveal" data-video="sports-retail">
+                    <div class="media">
+                        <video autoplay loop muted playsinline poster="assets/placeholder-4.webp" preload="none" loading="lazy" class="case-video" aria-label="Sports retail campaign showcase">
+                            <source src="assets/videos/innovasport.mp4" type="video/mp4"/>
+                        </video>
+                        <button class="audio-control" aria-label="Toggle audio for sports campaign video">
+                            <svg class="audio-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h3>Gen AI Sports Campaign</h3>
+                        <div class="case-notes">
+                            <p>AI-powered sports visuals with dynamic motion and precise sound design.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Campaign -->
+                <article class="card case reveal" data-video="confectionery">
+                    <div class="media">
+                        <video autoplay loop muted playsinline poster="assets/placeholder-1.webp" preload="none" loading="lazy" class="case-video" aria-label="Product campaign showcase">
+                            <source src="assets/videos/snickers.mp4" type="video/mp4"/>
+                        </video>
+                        <button class="audio-control" aria-label="Toggle audio for product campaign video">
+                            <svg class="audio-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h3>Gen AI Product Campaign</h3>
+                        <div class="case-notes">
+                            <p>AI-generated product visuals with dynamic motion graphics and hero shots.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Vehicle Beauty Shots -->
+                <article class="card case reveal" data-video="transportation-beauty">
+                    <div class="media">
+                        <video autoplay loop muted playsinline poster="assets/placeholder-2.webp" preload="none" loading="lazy" class="case-video" aria-label="Vehicle beauty shots showcase">
+                            <source src="assets/videos/ado-beauty.mp4" type="video/mp4"/>
+                        </video>
+                        <button class="audio-control" aria-label="Toggle audio for vehicle beauty shots video">
+                            <svg class="audio-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h3>Gen AI Vehicle Beauty Shots</h3>
+                        <div class="case-notes">
+                            <p>AI-powered luxury vehicle visuals with golden hour lighting and refined details.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Vehicle Campaign -->
+                <article class="card case reveal" data-video="transportation-hero">
+                    <div class="media">
+                        <video autoplay loop muted playsinline poster="assets/placeholder-3.webp" preload="none" loading="lazy" class="case-video" aria-label="Vehicle campaign showcase">
+                            <source src="assets/videos/ado-hero.mp4" type="video/mp4"/>
+                        </video>
+                        <button class="audio-control" aria-label="Toggle audio for vehicle campaign video">
+                            <svg class="audio-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h3>Gen AI Vehicle Campaign</h3>
+                        <div class="case-notes">
+                            <p>AI-generated cinematic vehicle campaign with premium lighting and interior details.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Beauty Campaign -->
+                <article class="card case reveal" data-video="beauty-product">
+                    <div class="media">
+                        <video autoplay loop muted playsinline poster="assets/placeholder-4.webp" preload="none" loading="lazy" class="case-video" aria-label="Beauty campaign showcase">
+                            <source src="assets/videos/natura.mp4" type="video/mp4"/>
+                        </video>
+                        <!-- No audio control for this case as it has no audio -->
+                    </div>
+                    <div class="card-body">
+                        <h3>Gen AI Beauty Campaign</h3>
+                        <div class="case-notes">
+                            <p>AI-powered beauty product showcase with macro angles and controlled lighting.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section services" id="services" aria-labelledby="services-heading">
+            <div class="section-head">
+                <h2 id="services-heading">What We Do</h2>
+                <p class="kicker">End-to-end generative production for ads, product and entertainment.</p>
+            </div>
+            <div class="services-carousel" id="servicesCarousel" role="region" aria-label="Services showcase carousel">
+                <div class="carousel-track carousel-track--auto-scroll" id="carouselTrack">
+                    <!-- Service cards will be generated via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Approach Section -->
+        <section class="section approach" id="approach" aria-labelledby="approach-heading">
+            <div class="section-head">
+                <h2 id="approach-heading">How We Work</h2>
+                <p class="kicker">Speed with taste. Clarity at every step.</p>
+            </div>
+            <ol class="steps">
+                <li><strong>Brief → Vision</strong> — alignment on story, tone, and success metrics.</li>
+                <li><strong>Look-Dev Sprints</strong> — quick visual R&D to lock palette, camera and texture language.</li>
+                <li><strong>Production</strong> — shot generation, compositing, clean-up, editorial rhythm, and sound.</li>
+                <li><strong>Finish</strong> — color grade, upscale, QC and delivery.</li>
+            </ol>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="about" aria-labelledby="about-heading">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 id="about-heading">About</h2>
+                    <p><a href="https://www.linkedin.com/company/mata-ai" target="_blank" rel="noopener" class="linkedin-link">MATA AI</a> is the creative identity of <a href="https://www.linkedin.com/in/dmata1/" target="_blank" rel="noopener" class="linkedin-link">Daniel Mata</a>, Creative Director & Art Director with over 12 years in top-tier advertising at agencies such as TBWA, Publicis, VML, Ganem, BBDO, DDB, and many more. With specialization in cinematic, design-driven, and generative productions for visionary brands, the studio combines proven expertise across banking, sports, automotive, technology, consumer goods, beverages, and entertainment.</p>
+                    <p>From Formula 1 to global retail, from financial services to lifestyle and sports brands, <a href="https://www.linkedin.com/company/mata-ai" target="_blank" rel="noopener" class="linkedin-link">MATA AI</a> merges cinematic craft, design, and advanced generative systems to create emotionally sharp, brand-faithful visuals built for maximum impact on modern platforms.</p>
+                    <p class="portfolio-disclaimer">*Some featured projects are adaptations, collaborations, or reinterpretations of works developed during previous professional engagements. They are included for portfolio purposes only and are not official brand materials. All rights remain with their respective owners.</p>
+                </div>
+                <div class="about-visual">
+                    <div class="founder-section">
+                        <div class="founder-photo">
+                            <img src="assets/daniel-mata-photo.jpg" alt="Daniel Mata, Founder of MATA AI"/>
+                            <div class="founder-info">
+                                <h3><a href="https://www.linkedin.com/in/dmata1/" target="_blank" rel="noopener" class="linkedin-link">Daniel Mata</a></h3>
+                                <span>Founder</span>
+                            </div>
+                        </div>
+                        <div class="studio-info">
+                            <div class="studio-est">
+                                <span class="est-label">EST.</span>
+                                <span class="est-year">2025</span>
+                            </div>
+                            <div class="studio-locations">
+                                <a href="https://www.google.com/maps/place/Mexico+City,+CDMX,+Mexico/" target="_blank" rel="noopener" class="location-link">
+                                    <div class="location">
+                                        <span class="flag-emoji" role="img" aria-label="Mexico flag">🇲🇽</span>
+                                        <span>México, MX</span>
+                                    </div>
+                                </a>
+                                <a href="https://www.google.com/maps/@51.3801994,9.0171275,3a,75y,332.68h,121.21t/data=!3m7!1e1!3m5!1s4N_59dp7598s00477CdhPw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-31.21036925512371%26panoid%3D4N_59dp7598s00477CdhPw%26yaw%3D332.68194579661946!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MDgxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="location-link">
+                                    <div class="location">
+                                        <span class="flag-emoji" role="img" aria-label="Germany flag">🇩🇪</span>
+                                        <span>Hesse, DE</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section - FORMULARIO CORREGIDO SIN SPANS SEPARADOS -->
+        <section class="section contact" id="contact" aria-labelledby="contact-heading">
+            <div class="section-head">
+                <h2 id="contact-heading">Start a Project</h2>
+                <p class="kicker">Share your brief, get scope and options the same day!</p>
+            </div>
+            <form action="https://formspree.io/f/manbzpqv" method="POST" class="contact-form" novalidate>
+                <div class="row">
+                    <label for="name">
+                        Full name *
+                        <input id="name" name="name" placeholder="Your name" required autocomplete="name" autofocus/>
+                    </label>
+                    <label for="email">
+                        Email *
+                        <input id="email" name="email" placeholder="you@company.com" required type="email" autocomplete="email"/>
+                    </label>
+                </div>
+                <label for="project">
+                    Project *
+                    <textarea id="project" name="project" placeholder="What do you want to make? Timeline? Budget range?" required rows="5"></textarea>
+                </label>
+                <input name="_subject" type="hidden" value="New project inquiry from MATA AI website"/>
+                <div class="row buttons">
+                    <button class="button primary btn-liquid btn-pill" type="submit">Send</button>
+                    <a class="button ghost" href="mailto:hi@mataai.studio">Email directly</a>
+                </div>
+                <p class="fine">Prefer WhatsApp? Text <a href="https://wa.me/525574944176?text=Hi%20MATA%20AI%2C%20I%27d%20like%20to%20start%20a%20project." rel="noopener" target="_blank">+52 55 7494 4176</a>. We reply same day.</p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+        <div class="modal-content">
+            <video class="modal-video" id="modalVideo" loop disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
+                <source src="" type="video/mp4">
+            </video>
+            <div class="modal-controls">
+                <button class="modal-btn audio-toggle" id="modalAudioToggle" aria-label="Toggle audio">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                </button>
+                <button class="modal-btn close-modal" id="closeModal" aria-label="Close modal">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-info" id="modalInfo">
+                <h3 id="modalTitle">Project Title</h3>
+                <p id="modalDescription">Project description will appear here...</p>
+                <p class="modal-disclaimer">Videos are adaptations of MATA AI original work for portfolio use only, not official materials. Trademarks © their owners. No endorsement or affiliation implied.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; <span id="y"></span> MATA AI</p>
+        <div class="socials">
+            <a href="privacy.html">Privacy</a>
+            <span class="dot">•</span>
+            <a href="terms.html">Terms</a>
+            <span class="dot">•</span>
+            <a href="https://www.linkedin.com/company/mata-ai/" rel="noopener" target="_blank">LinkedIn</a>
+            <span class="dot">•</span>
+            <a href="https://www.instagram.com/mataai.studio" rel="noopener" target="_blank">Instagram</a>
+        </div>
+        <a aria-label="Back to top" class="to-top" href="#top">↑</a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scroll-fix.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
